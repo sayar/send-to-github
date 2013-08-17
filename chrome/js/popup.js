@@ -9,7 +9,7 @@ $(function(){
                 chrome.tabs.sendRequest(tab.id, {method: "getSelection"}, function(response){
                     if(response === undefined || reponse === null || 
                         response.data === undefined || response.data === null){
-                        $("#issue_body").val("\nVia ["+tab.title+
+                        $("#issue_body").val("Via ["+tab.title+
                             "]("+tab.url+")");
                     } else {
                         $("#issue_body").val(response.data + "\nVia ["+tab.title+

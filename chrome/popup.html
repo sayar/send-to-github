@@ -4,12 +4,13 @@
         <title>Send to GitHub</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+        <link href="css/bootstrap-markdown.min.css" rel="stylesheet" media="screen">
         <link href="css/popup.css" rel="stylesheet" media="screen">
     </head>
     <body>
         <div class="container-fluid">
             <h3>Send to GitHub</h3>
-            <div id="login_form">
+            <div id="login_form" class="span6">
                 <form class="form">
                     <fieldset>
                         <p>Credentials are stored in local storage 
@@ -37,13 +38,13 @@
                     <fieldset>
                 </form>
             </div>
-            <div id="issue_form">
+            <div id="issue_form" class="span6">
                 <form class="form">
                     <fieldset>
                     <div class="control-group">
                         <label class="control-label" for="issue_repository">Repository</label>
                         <div class="controls">
-                            <select id="issue_repository">
+                            <select id="issue_repository" class="span6">
                                 <option value="-">-----</option>
                             </select>
                         </div>
@@ -51,14 +52,15 @@
                     <div class="control-group">
                         <label class="control-label" for="issue_title">Title</label>
                         <div class="controls">
-                            <input type="text" id="issue_title" 
+                            <input type="text" id="issue_title" class="span6" 
                                 placeholder="Title for issue.">
                         </div>
                     </div>
                     <div class="control-group">
                         <label class="control-label" for="issue_body">Description</label>
                         <div class="controls">
-                            <textarea id="issue_body" rows="3"></textarea>
+                            <textarea id="issue_body" rows="3" 
+                                data-provide="markdown"></textarea>
                         </div>
                     </div>
                     <div class="control-group">
@@ -67,7 +69,7 @@
                             <div class="input-prepend">
                                 <span class="add-on">@</span>
                                 <input class="span2" id="issue_assignee" type="text" 
-                                    placeholder="Assignee for issue.">
+                                    class="span6" placeholder="Assignee for issue.">
                             </div>
                         </div>
                     </div>
@@ -75,13 +77,13 @@
                         <label class="control-label" 
                             for="issue_milestone">Milestone</label>
                         <div class="controls">
-                            <select id="issue_milestone"></select>
+                            <select id="issue_milestone" class="span6"></select>
                         </div>
                     </div>
                     <div class="control-group">
                         <label class="control-label" for="issue_labels">Labels</label>
                         <div class="controls">
-                            <input type="text" id="issue_labels" 
+                            <input type="text" id="issue_labels" class="span6"
                                 placeholder="Labels for issue.">
                         </div>
                     </div>
@@ -99,6 +101,7 @@
         </div>
         <script src="js/jquery-1.10.2.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
+        <script src="js/bootstrap-markdown.js"></script>
         <script src="js/lib/base64.js"></script>
         <script src="js/lib/underscore-min.js"></script>
         <script src="js/github.js"></script>
