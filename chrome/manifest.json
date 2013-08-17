@@ -19,13 +19,13 @@
   "homepage_url": "https://github.com/sayar/send-to-github",
   //TODO
   //"key": "publicKey",
-  //"minimum_chrome_version": "versionString",
+  "minimum_chrome_version": "20",
   
-  "offline_enabled": false
+  "offline_enabled": false,
   
   //"options_page": "aFile.html",
   
-  //"permissions": [...],
+  "permissions": ["storage"]
   //"platforms": ...,
 
   //"sandbox": [...],
