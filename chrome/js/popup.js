@@ -57,6 +57,9 @@ $(function(){
             });
 
             $("#issue_create").click(function(event){
+                $("#issue_form").addClass("hide");
+                $("#confirmation_page").removeClass("hide");
+                
                 event.preventDefault();
                 return false;
             });
