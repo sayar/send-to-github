@@ -9,8 +9,37 @@
     <body>
         <div class="container-fluid">
             <h3>Send to GitHub</h3>
+            <div id="login_form" class="hide">
+                <form class="form">
+                    <fieldset>
+                        <p>Credentials are stored in local storage 
+                        and are never transmitted over the internet.</p>
+                        <div class="control-group">
+                            <label class="control-label" 
+                                for="credentials_user">Username</label>
+                            <div class="controls">
+                                <input type="text" id="credentials_user" 
+                                    placeholder="GitHub Username.">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label" 
+                                for="credentials_pass">Password</label>
+                            <div class="controls">
+                                <input type="text" id="credentials_pass" 
+                                    placeholder="GitHub Username.">
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <button id="credentials_save" type="submit"
+                                class="btn btn-block btn-primary">Save Credentials</button>
+                        </div>
+                    <fieldset>
+                </form>
+            </div>
             <div id="issue_form">
                 <form class="form">
+                    <fieldset>
                     <div class="control-group">
                         <label class="control-label" for="issue_project">Project</label>
                         <div class="controls">
@@ -28,7 +57,7 @@
                         <label class="control-label" for="issue_body">Description</label>
                         <div class="controls">
                             <textarea id="issue_body" 
-                                placeholder="Description for issue." rows="5"></textarea>
+                                placeholder="Description for issue." rows="3"></textarea>
                         </div>
                     </div>
                     <div class="control-group">
@@ -42,7 +71,8 @@
                         </div>
                     </div>
                     <div class="control-group">
-                        <label class="control-label" for="issue_milestone">Milestone</label>
+                        <label class="control-label" 
+                            for="issue_milestone">Milestone</label>
                         <div class="controls">
                             <select id="issue_milestone"></select>
                         </div>
@@ -55,13 +85,16 @@
                         </div>
                     </div>
                     <div class="form-actions">
-                        <button id="issue_create" type="submit" class="btn btn-block btn-primary">Send to GitHub</button>
+                        <button id="issue_create" type="submit" 
+                            class="btn btn-block btn-primary">Send to GitHub</button>
                     </div>
+                    </fieldset>
                 </form>
             </div>
         </div>
         <script src="js/jquery-1.10.2.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
+        <script src="js/github.js"></script>
         <script src="js/popup.js"></script>
     </body>
 </html>
