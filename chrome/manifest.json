@@ -8,8 +8,8 @@
   //"icons": {...},
   "browser_action": {
     "default_icon": {
-      "19": "images/GitHub-Mark-32px.png",
-      "38": "images/GitHub-Mark-32px.png"
+      "19": "img/GitHub-Mark-32px.png",
+      "38": "img/GitHub-Mark-32px.png"
     },
     "default_title": "Send to GitHub",
     "default_popup": "popup.html"
