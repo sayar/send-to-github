@@ -4,10 +4,55 @@
         <title>Send to GitHub</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+        <link href="css/popup.css" rel="stylesheet" media="screen">
     </head>
     <body>
         <div class="container-fluid">
-            <h1>Send to GitHub</h1>
+            <h3>Send to GitHub</h3>
+            <div id="issue_form">
+                <form class="form">
+                    <div class="control-group">
+                        <label class="control-label" for="issue_title">Title</label>
+                        <div class="controls">
+                            <input type="text" id="issue_title" 
+                                placeholder="Title for issue.">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="issue_body">Description</label>
+                        <div class="controls">
+                            <textarea id="issue_body" 
+                                placeholder="Description for issue." rows="5"></textarea>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="issue_assignee">Assignee</label>
+                        <div class="controls">
+                            <div class="input-prepend">
+                                <span class="add-on">@</span>
+                                <input class="span2" id="issue_assignee" type="text" 
+                                    placeholder="Assignee for issue.">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="issue_milestone">Milestone</label>
+                        <div class="controls">
+                            <select id="issue_milestone"></select>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="issue_labels">Labels</label>
+                        <div class="controls">
+                            <input type="text" id="issue_labels" 
+                                placeholder="Labels for issue.">
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-block btn-primary">Send to GitHub</button>
+                    </div>
+                </form>
+            </div>
         </div>
         <script src="http://code.jquery.com/jquery.js"></script>
         <script src="js/bootstrap.min.js"></script>
