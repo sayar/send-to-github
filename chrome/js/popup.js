@@ -5,6 +5,18 @@ $(function(){
             $("#login_form").addClass("hide");
             $("#issue_form").removeClass("hide");
             
+            chrome.tabs.getSelected(null, function(tab) {
+                chrome.tabs.sendRequest(tab.id, {method: "getSelection"}, function(response){
+                    if(response.data !== undefined || response.data !== null){
+                        $("#issue_body").val(response.data + "\nVia ["+tab.title+
+                            "]("+tab.url+")");
+                    } else {
+                        $("#issue_body").val(response.data + "\nVia ["+tab.title+
+                            "]("+tab.url+")");
+                    }
+                });
+            });
+            
             var github = new Github({
                 "username": items.credentials_user,
                 "password": items.credentials_pass,
