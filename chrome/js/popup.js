@@ -7,8 +7,9 @@ $(function(){
             
             chrome.tabs.getSelected(null, function(tab) {
                 chrome.tabs.sendRequest(tab.id, {method: "getSelection"}, function(response){
-                    if(response.data !== undefined || response.data !== null){
-                        $("#issue_body").val(response.data + "\nVia ["+tab.title+
+                    if(response === undefined || reponse === null || 
+                        response.data === undefined || response.data === null){
+                        $("#issue_body").val("\nVia ["+tab.title+
                             "]("+tab.url+")");
                     } else {
                         $("#issue_body").val(response.data + "\nVia ["+tab.title+
@@ -42,14 +43,13 @@ $(function(){
                             for(var i in assignees){
                                 assi.push(assignees[i].login);
                             }
-                            console.log(assi);
                             $('#issue_assignee').typeahead({source:assi});
                         });
                         repo.listMilestones(function(err, milestones){
                             for(var i in milestones){
                                 var mile = milestones[i];
                                 $("#issue_milestone").append(new Option(mile.title, 
-                                    mile.title, false, false));
+                                    mile.number, false, false));
                             }
                         });
                     }
@@ -57,9 +57,38 @@ $(function(){
             });
 
             $("#issue_create").click(function(event){
+                var repo_name = $("#issue_repository option:selected:first").val();
+                
+                var data = {
+                    title: $("#issue_title").val() != "" ? $("#issue_title").val() : "New Issue",
+                    body: $("#issue_body").val()
+                };
+                if($("#issue_assignee").val() !== ""){
+                    data.assignee = $("#issue_assignee").val();
+                }
+                if($("#issue_labels").val() !== "" && 
+                    $("#issue_labels").val().split(" ").length > 0){
+                    data.labels = $("#issue_labels").val().split(" ");
+                }
+                if ($("#issue_milestone option:selected:first").val() !== undefined){
+                    data.milestone = $("#issue_milestone option:selected:first").val();
+                }
+                
+                var issue = github.getIssue(repo_name.split("/", 2)[0], 
+                            repo_name.split("/", 2)[1], null);
+                issue.create(data, function(err, result){
+                    if(err !== null){
+                        $("#confirmation_status").text("Fail!");
+                    }
+                    else {
+                        $("#confirmation_status").html(
+                            "Success! See <a target=\"_blank\" href=\""+
+                            result.html_url+"\">here.</a>");
+                    }
+                });
+                
                 $("#issue_form").addClass("hide");
                 $("#confirmation_page").removeClass("hide");
-                
                 event.preventDefault();
                 return false;
             });
