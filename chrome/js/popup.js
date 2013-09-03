@@ -4,18 +4,20 @@ $(function(){
             items.hasOwnProperty("credentials_pass")){
             $("#login_form").addClass("hide");
             $("#issue_form").removeClass("hide");
-            
-            chrome.tabs.getSelected(null, function(tab) {
-                chrome.tabs.sendRequest(tab.id, {method: "getSelection"}, function(response){
-                    if(response === undefined || reponse === null || 
-                        response.data === undefined || response.data === null){
-                        $("#issue_body").val("Via ["+tab.title+
-                            "]("+tab.url+")");
-                    } else {
-                        $("#issue_body").val(response.data + "\nVia ["+tab.title+
-                            "]("+tab.url+")");
-                    }
-                });
+
+            $("#issue_body").markdown({
+                onShow: function(e){
+                    chrome.tabs.getSelected(null, function(tab) {
+                        chrome.tabs.sendRequest(tab.id, {method: "getSelection"}, function(response){
+                            if(response === undefined || reponse === null ||
+                                response.data === undefined || response.data === null){
+                                e.setContent("Via ["+tab.title+"]("+tab.url+")");
+                            } else {
+                                e.setContent(response.data + "\nVia ["+tab.title+"]("+tab.url+")");
+                            }
+                        });
+                    });
+                }
             });
             
             var github = new Github({
@@ -101,7 +103,6 @@ $(function(){
                     "credentials_user": $("#credentials_user").val(),
                     "credentials_pass": $("#credentials_pass").val()
                 }, function(){
-                    message("Settings saved.");
                     $("#login_form").addClass("hide");
                     $("#issue_form").removeClass("hide"); 
                 });
